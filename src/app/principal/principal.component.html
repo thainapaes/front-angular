@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/login" (click)="setActive($event)">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/usuario" (click)="setActive($event)">Usuario</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/carro" (click)="setActive($event)">Carros</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

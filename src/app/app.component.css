@@ -1,0 +1,6 @@
+.nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #007bff; /* Adiciona uma borda azul */
+}
