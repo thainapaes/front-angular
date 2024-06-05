@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoginRequest } from '../model/request/LoginRequest';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
 
   @Output("navegate") onNavigate = new EventEmitter();
   disableLoginButton: boolean = true;
+  loginRequest = new LoginRequest();
 
   loginForm = new FormGroup({
     login: new FormControl('', Validators.required),
@@ -24,7 +26,10 @@ export class LoginComponent {
   constructor(private router:Router, private loginService: LoginService, private toastService: ToastrService) {}
 
   submit() {
-    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
+    this.loginRequest.login = this.loginForm.value.login;
+    this.loginRequest.password = this.loginForm.value.password;
+
+    this.loginService.login(this.loginRequest).subscribe({
       next: () => this.router.navigate(["carro"]),
       error: () => this.toastService.error("Invalid login or password")
     })

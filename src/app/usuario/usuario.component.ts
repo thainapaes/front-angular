@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Car } from '../model/Car';
 import { User } from '../model/User';
 import { UserService } from '../service/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -39,7 +40,7 @@ export class UsuarioComponent {
   carA = new Car();
   carAL:Car[] = [];
 
-  constructor(private service:UserService, private formBuilder: FormBuilder){}
+  constructor(private service:UserService, private formBuilder: FormBuilder, private router:Router){}
 
   selecionar():void{
     this.service.selecionar()
@@ -50,21 +51,12 @@ export class UsuarioComponent {
     this.selecionar();
   }
 
-  mostrarTodosUsuarios():boolean{
-    debugger;
-    if (this.todosUsuarios === true) {
-      return this.todosUsuarios = false;
-    } else {
-      return this.todosUsuarios = true;
-    }
+  retornarLogin(){
+    this.router.navigate(["login"])
   }
 
-
   cadastrarUsuario():void{
-    debugger;
     this.cliente.carsList = [JSON.parse(this.formulario.value.carsL)];
-    console.log(this.cliente.carsList.values);
-    debugger;
 
     this.service.cadastrarUser(this.cliente)
     .subscribe(retorno => {
@@ -77,18 +69,13 @@ export class UsuarioComponent {
 
   selecionarCliente(posicao:number):void{
     this.cliente = this.users[posicao];
-    debugger;
     this.formulario.value.carsL = JSON.stringify(this.users[posicao].carsList);
-    console.log(this.formulario.value.carsL);
-    debugger;
+
     this.exibirBotoes = false;
     this.tabelaVisivel = false;
   }
 
   alterarUsuario(id:number):void{
-    //this.cliente.carsList = [JSON.parse(this.formulario.value.carsL)];
-    debugger;
-
     this.service.alterarUser(this.cliente, id)
     .subscribe(retorno => {
       let posicao = this.users.findIndex(obj => {
@@ -106,12 +93,9 @@ export class UsuarioComponent {
   }
 
   removerUsuario(id:number):void{
-    //this.cliente.carsList = [JSON.parse(this.formulario.value.carsL)];
-    debugger;
 
     this.service.remover(id)
     .subscribe(retorno => {
-      debugger;
       if (retorno.toString() === "OK") {
         let posicao = this.users.findIndex(() => {
           return id == this.cliente.id;

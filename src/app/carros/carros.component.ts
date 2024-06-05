@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Car } from '../model/Car';
 import { CarService } from '../service/car/car.service';
+import { CarPatchRequest } from '../model/request/CarPatchRequest';
+import { CarDeleteRequest } from '../model/request/CarDeleteRequest';
 
 @Component({
   selector: 'app-carros-components',
@@ -11,9 +13,11 @@ import { CarService } from '../service/car/car.service';
   templateUrl: './carros.component.html',
   styleUrl: './carros.component.css'
 })
-export class CarrosComponentsComponent {
+export class CarrosComponent {
   exibirBotoes:boolean = true;
   tabelaVisivel:boolean = true;
+  carPatchRequest = new CarPatchRequest();
+  carDeleteRequest = new CarDeleteRequest();
 
   formulario = new FormGroup({
     id: new FormControl(null),
@@ -54,8 +58,12 @@ export class CarrosComponentsComponent {
     this.tabelaVisivel = false;
   }
 
-  alterarCarro(id:number):void{
-    this.service.alterarCar(this.carro, id)
+  alterarCarro(placa:string):void{
+    debugger;
+    this.carPatchRequest.licensePlate = placa;
+    this.carPatchRequest.car = this.carro;
+
+    this.service.alterarCar(this.carPatchRequest)
     .subscribe(retorno => {
       let posicao = this.cars.findIndex(obj => {
         return obj.id == retorno.id;
@@ -71,8 +79,9 @@ export class CarrosComponentsComponent {
     });
   }
 
-  removerCarro(id:number):void{
-    this.service.remover(id)
+  removerCarro(placa:string, id:number):void{
+    this.carDeleteRequest.licensePlate = placa;
+    this.service.remover(this.carDeleteRequest)
     .subscribe(retorno => {
       debugger;
       if (retorno.toString() === "OK") {

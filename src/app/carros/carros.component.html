@@ -9,8 +9,8 @@
   @if (exibirBotoes) {
     <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarCarro()" [disabled]="formulario.invalid">
   } @else {
-    <input type="button" value="Alterar" class="btn btn-warning" (click)="alterarCarro(formulario.value.id)" [disabled]="formulario.invalid">
-    <input type="button" value="Remover" class="btn btn-danger" (click)="removerCarro(formulario.value.id)">
+    <input type="button" value="Alterar" class="btn btn-warning" (click)="alterarCarro(formulario.value.placa)" [disabled]="formulario.invalid">
+    <input type="button" value="Remover" class="btn btn-danger" (click)="removerCarro(formulario.value.placa, formulario.value.id)">
     <input type="button" value="Cancelar"class="btn btn-dark" (click)="cancelar()">
   }
 </form>
@@ -20,8 +20,8 @@
     <tr>
       <th>#</th>
       <th>Placa</th>
-      <th>Cor</th>
       <th>Modelo</th>
+      <th>Cor</th>
       <th>Ano</th>
       <th>Selecionar</th>
     </tr>
