@@ -27,38 +27,6 @@
   <input type="button" value="Login" class="btn btn-primary" (click)="retornarLogin()">
 </form>
 
-<div *ngIf="todosUsuarios">
-  <table class="table" *ngIf="tabelaVisivel">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Sobrenome</th>
-        <th>Data de nascimento</th>
-        <th>Email</th>
-        <th>Login</th>
-        <th>Senha</th>
-        <th>Telefone</th>
-        <th>Selecionar</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let u of users; index as i">
-        <td>{{i}}</td>
-        <td>{{u.firstName}}</td>
-        <td>{{u.lastName}}</td>
-        <td>{{u.birthday}}</td>
-        <td>{{u.email}}</td>
-        <td>{{u.login}}</td>
-        <td>{{u.password}}</td>
-        <td>{{u.phone}}</td>
-        <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 <table class="table" *ngIf="tabelaVisivel">
   <thead>
     <tr>
@@ -68,7 +36,6 @@
       <th>Data de nascimento</th>
       <th>Email</th>
       <th>Login</th>
-      <th>Senha</th>
       <th>Telefone</th>
       <th>Selecionar</th>
     </tr>
@@ -82,7 +49,6 @@
       <td>{{u.birthday}}</td>
       <td>{{u.email}}</td>
       <td>{{u.login}}</td>
-      <td>{{u.password}}</td>
       <td>{{u.phone}}</td>
       <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
     </tr>

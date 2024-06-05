@@ -29,8 +29,7 @@ export class UsuarioComponent {
     login: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     telefone: new FormControl(''),
-    carsL: new FormControl(''),
-    //carsList: this.formBuilder.array([]),
+    carsL: new FormControl('')
   });
 
   cliente = new User();

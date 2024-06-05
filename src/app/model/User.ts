@@ -10,4 +10,7 @@ export class User{
   password:string;
   phone:string;
   carsList:Car[];
+  createdDate!: Date;
+  lastLogin!: Date;
+
 }
