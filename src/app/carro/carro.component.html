@@ -1,0 +1,39 @@
+<form [formGroup]="formulario">
+  <input type="number" class="form-control" formControlName="id" readonly [(ngModel)]="carro.id">
+  <input type="text" formControlName="licensePlate" placeholder="placa" class="form-control" name="placa" [(ngModel)]="carro.licensePlate">
+  <input type="text" formControlName="color" placeholder="cor" class="form-control" name="cor" [(ngModel)]="carro.color">
+  <input type="text" formControlName="model" placeholder="modelo" class="form-control" name="modelo" [(ngModel)]="carro.model">
+  <input type="number" formControlName="year" placeholder="ano" class="form-control" name="ano" [(ngModel)]="carro.year">
+
+  @if (exibirBotoes) {
+    <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarCarro()" [disabled]="formulario.invalid">
+  } @else {
+    <input type="button" value="Alterar" class="btn btn-warning" (click)="alterarCarro(formulario.value.licensePlate)" [disabled]="formulario.invalid">
+    <input type="button" value="Remover" class="btn btn-danger" (click)="removerCarro(formulario.value.licensePlate, formulario.value.id)">
+    <input type="button" value="Cancelar" class="btn btn-dark" (click)="cancelar()">
+  }
+</form>
+
+<table class="table" *ngIf="tabelaVisivel">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Placa</th>
+      <th>Modelo</th>
+      <th>Cor</th>
+      <th>Ano</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of cars; index as i">
+      <td>{{i}}</td>
+      <td>{{c.licensePlate}}</td>
+      <td>{{c.model}}</td>
+      <td>{{c.color}}</td>
+      <td>{{c.year}}</td>
+      <td><button class="btn btn-success" (click)="selecionarCarro(i)">Selecionar</button></td>
+    </tr>
+  </tbody>
+</table>

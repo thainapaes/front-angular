@@ -27,18 +27,15 @@ export class UsuarioComponent {
     dataNascimento: new FormControl(null),
     email: new FormControl('', [Validators.required, Validators.email]),
     login: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required,Validators.minLength(6)]),
     telefone: new FormControl(''),
-    carsL: new FormControl(''),
-    //carsList: this.formBuilder.array([]),
+    carsL: new FormControl('')
   });
 
-  cliente = new User();
+  usuario = new User();
 
   users:User[] = [];
-  car = new Car();
-  carA = new Car();
-  carAL:Car[] = [];
+  carro = new Car();
 
   constructor(private service:UserService, private formBuilder: FormBuilder, private router:Router){}
 
@@ -56,19 +53,19 @@ export class UsuarioComponent {
   }
 
   cadastrarUsuario():void{
-    this.cliente.carsList = [JSON.parse(this.formulario.value.carsL)];
+    this.usuario.carsList = [JSON.parse(this.formulario.value.carsL)];
 
-    this.service.cadastrarUser(this.cliente)
+    this.service.cadastrarUser(this.usuario)
     .subscribe(retorno => {
       this.users.push(retorno);
 
-      this.cliente = new User();
+      this.usuario = new User();
       alert('Usuario Cadastrado com sucesso!')
     });
   }
 
   selecionarCliente(posicao:number):void{
-    this.cliente = this.users[posicao];
+    this.usuario = this.users[posicao];
     this.formulario.value.carsL = JSON.stringify(this.users[posicao].carsList);
 
     this.exibirBotoes = false;
@@ -76,14 +73,14 @@ export class UsuarioComponent {
   }
 
   alterarUsuario(id:number):void{
-    this.service.alterarUser(this.cliente, id)
+    this.service.alterarUser(this.usuario, id)
     .subscribe(retorno => {
       let posicao = this.users.findIndex(obj => {
         return obj.id == retorno.id;
       });
 
       this.users[posicao] = retorno;
-      this.cliente = new User();
+      this.usuario = new User();
 
       this.exibirBotoes = true;
       this.tabelaVisivel = true;
@@ -98,10 +95,10 @@ export class UsuarioComponent {
     .subscribe(retorno => {
       if (retorno.toString() === "OK") {
         let posicao = this.users.findIndex(() => {
-          return id == this.cliente.id;
+          return id == this.usuario.id;
         });
         this.users.splice(posicao, 1);
-        this.cliente = new User();
+        this.usuario = new User();
 
         this.exibirBotoes = true;
         this.tabelaVisivel = true;
@@ -115,7 +112,7 @@ export class UsuarioComponent {
   }
 
   cancelar():void {
-    this.cliente = new User();
+    this.usuario = new User();
     this.exibirBotoes = true;
     this.tabelaVisivel = true;
   }

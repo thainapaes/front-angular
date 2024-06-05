@@ -15,7 +15,7 @@ import { LoginRequest } from '../model/request/LoginRequest';
 export class LoginComponent {
 
   @Output("navegate") onNavigate = new EventEmitter();
-  disableLoginButton: boolean = true;
+  desabilitarLoginBtn: boolean = true;
   loginRequest = new LoginRequest();
 
   loginForm = new FormGroup({

@@ -8,9 +8,13 @@ import { User } from '../../model/User';
 })
 export class UserService {
 
-  private url:string = 'http://localhost:8080';
+  private url:string = 'http://localhost:8080/api';
 
   constructor(private http:HttpClient) { }
+
+  informacoes(): Observable<User>{
+    return this.http.get<User>(this.url + "/me/" + sessionStorage.getItem('id'));
+  }
 
   selecionar(): Observable<User[]>{
     return this.http.get<User[]>(this.url + "/users");

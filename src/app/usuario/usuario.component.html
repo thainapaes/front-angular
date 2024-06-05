@@ -1,20 +1,20 @@
 <form [formGroup]="formulario">
   <!--<img src="./assets/usuario.png">-->
-  <input type="number" class="form-control" formControlName="id" readonly [(ngModel)]="cliente.id">
-  <input matInput type="text" formControlName="nome" placeholder="nome" class="form-control" name="nome" [(ngModel)]="cliente.firstName">
-  <input type="text" formControlName="sobrenome" placeholder="sobrenome" class="form-control" name="sobrenome"  [(ngModel)]="cliente.lastName">
-  <input type="date" formControlName="dataNascimento" placeholder="data de nascimento" class="form-control" name="data de nascimento" [(ngModel)]="cliente.birthday">
-  <input type="text" formControlName="telefone" placeholder="telefone" class="form-control" name="telefone" [(ngModel)]="cliente.phone">
-  <input type="email" formControlName="email" placeholder="email" class="form-control" name="email" [(ngModel)]="cliente.email">
-  <input type="login" formControlName="login" placeholder="login" class="form-control" name="login" [(ngModel)]="cliente.login">
-  <input type="password" formControlName="password" placeholder="password" class="form-control" name="password" [(ngModel)]="cliente.password">
+  <input type="number" class="form-control" formControlName="id" readonly [(ngModel)]="usuario.id">
+  <input matInput type="text" formControlName="nome" placeholder="nome" class="form-control" name="nome" [(ngModel)]="usuario.firstName">
+  <input type="text" formControlName="sobrenome" placeholder="sobrenome" class="form-control" name="sobrenome"  [(ngModel)]="usuario.lastName">
+  <input type="date" formControlName="dataNascimento" placeholder="data de nascimento" class="form-control" name="data de nascimento" [(ngModel)]="usuario.birthday">
+  <input type="text" formControlName="telefone" placeholder="telefone" class="form-control" name="telefone" [(ngModel)]="usuario.phone">
+  <input type="email" formControlName="email" placeholder="email" class="form-control" name="email" [(ngModel)]="usuario.email">
+  <input type="login" formControlName="login" placeholder="login" class="form-control" name="login" [(ngModel)]="usuario.login">
+  <input type="password" formControlName="password" placeholder="password" class="form-control" name="password" [(ngModel)]="usuario.password">
   <textarea *ngIf="exibirBotoes" formControlName="carsL" placeholder="lista de carros ex:
     para um carro:
     '{'id': 0, 'model': 'modelo do veiculo','licensePlate': 'placa','color': 'cor','year': anodocarro}'
     caso tenha mais de um carro:
     '{'id': 0, 'model': 'modelo do veiculo','licensePlate': 'placa','color': 'cor','year': anodocarro},
     {'id': 0, 'model': 'modelo do veiculo','licensePlate': 'placa','color': 'cor','year': anodocarro}'"
-  class="form-control" name="carsL" [(ngModel)]="cliente.carsList"></textarea>
+  class="form-control" name="carsL" [(ngModel)]="usuario.carsList"></textarea>
 
   @if (exibirBotoes) {
     <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarUsuario()" [disabled]="formulario.invalid">
@@ -27,38 +27,6 @@
   <input type="button" value="Login" class="btn btn-primary" (click)="retornarLogin()">
 </form>
 
-<div *ngIf="todosUsuarios">
-  <table class="table" *ngIf="tabelaVisivel">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Sobrenome</th>
-        <th>Data de nascimento</th>
-        <th>Email</th>
-        <th>Login</th>
-        <th>Senha</th>
-        <th>Telefone</th>
-        <th>Selecionar</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let u of users; index as i">
-        <td>{{i}}</td>
-        <td>{{u.firstName}}</td>
-        <td>{{u.lastName}}</td>
-        <td>{{u.birthday}}</td>
-        <td>{{u.email}}</td>
-        <td>{{u.login}}</td>
-        <td>{{u.password}}</td>
-        <td>{{u.phone}}</td>
-        <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 <table class="table" *ngIf="tabelaVisivel">
   <thead>
     <tr>
@@ -68,7 +36,6 @@
       <th>Data de nascimento</th>
       <th>Email</th>
       <th>Login</th>
-      <th>Senha</th>
       <th>Telefone</th>
       <th>Selecionar</th>
     </tr>
@@ -82,7 +49,6 @@
       <td>{{u.birthday}}</td>
       <td>{{u.email}}</td>
       <td>{{u.login}}</td>
-      <td>{{u.password}}</td>
       <td>{{u.phone}}</td>
       <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
     </tr>
