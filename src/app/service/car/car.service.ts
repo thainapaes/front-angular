@@ -28,6 +28,8 @@ export class CarService {
   }
 
   remover(licensePlate:string):Observable<HttpStatusCode>{
-    return this.http.delete<HttpStatusCode>(this.url + '/cars/' + sessionStorage.getItem('id') + "?licensePlate=${" + licensePlate + "}");
+
+    return this.http.delete<HttpStatusCode>(this.url + '/cars/' + sessionStorage.getItem('id') + '?licensePlate=' + licensePlate);
   }
+
 }
