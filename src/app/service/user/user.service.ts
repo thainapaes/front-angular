@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   informacoes(): Observable<User>{
-    return this.http.get<User>(this.url + "/me/" + sessionStorage.getItem('id'));
+    return this.http.get<User>(this.url + "/users/" + sessionStorage.getItem('id'));
   }
 
   selecionar(): Observable<User[]>{

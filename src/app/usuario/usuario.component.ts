@@ -18,7 +18,6 @@ export class UsuarioComponent {
   exibirBotoes:boolean = true;
   exibirBotoesCarro:boolean = true;
   tabelaVisivel:boolean = true;
-  todosUsuarios:boolean = false;
 
   formulario = new FormGroup({
     id: new FormControl(null),
